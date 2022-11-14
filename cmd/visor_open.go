@@ -86,6 +86,8 @@ func openVisorPage(url string) error {
 	switch rt.GOOS {
 	case "linux":
 		return exec.Command("xdg-open", url).Start()
+	case "android":
+		return exec.Command("xdg-open", url).Start()
 	case "windows":
 		return exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
 	case "darwin":

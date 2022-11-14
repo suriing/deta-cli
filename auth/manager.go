@@ -291,6 +291,8 @@ func (m *Manager) openLoginPage() error {
 	switch runtime.GOOS {
 	case "linux":
 		return exec.Command("xdg-open", loginURL).Start()
+	case "android":
+		return exec.Command("xdg-open", loginURL).Start()
 	case "windows":
 		return exec.Command("rundll32", "url.dll,FileProtocolHandler", loginURL).Start()
 	case "darwin":
@@ -350,7 +352,7 @@ func (m *Manager) startLocalServer() {
 	}
 }
 
-//  uses a free TCP port
+// uses a free TCP port
 func (m *Manager) useFreePort() error {
 	addr, err := net.ResolveTCPAddr("tcp", "localhost:0")
 	if err != nil {
